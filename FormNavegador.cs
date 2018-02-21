@@ -41,26 +41,8 @@ namespace NavegadorWebAbas
 
         private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            WebBrowser browser = tabControl1.SelectedTab.Controls[0] as WebBrowser;
-            if (browser != null)
-            {
-                tabControl1.SelectedTab.Text = browser.DocumentTitle;
-
-                string mydocpath =
-                    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                var dataHoraAtual = DateTime.Now;
-
-                var filename = string.Format(@"{0}\LogIntegracao_{1}.html", mydocpath, dataHoraAtual.ToString("yyyy-MM-dd'_'HH'-'mm'-'ss"));
-
-                using (StreamWriter outputFile = new StreamWriter(filename))
-                {
-                    outputFile.WriteLine(browser.DocumentTitle);
-                    outputFile.WriteLine(browser.DocumentText);
-                }
-
-                timerFechar.Enabled = true;
-            }
+            if (ckeFecharNavegador.Checked)
+              timerFechar.Enabled = true;
         }
 
         private void btnRetorna_Click(object sender, EventArgs e)
@@ -104,6 +86,31 @@ namespace NavegadorWebAbas
             }
             else
             {
+                WebBrowser browser = tabControl1.SelectedTab.Controls[0] as WebBrowser;
+                if (browser != null)
+                {
+                    tabControl1.SelectedTab.Text = browser.DocumentTitle;
+
+                    string mydocpath =
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                    var dataHoraAtual = DateTime.Now;
+
+                    if (!Directory.Exists(string.Format(@"{0}\Logs", mydocpath)))
+                    {
+                        Directory.CreateDirectory(string.Format(@"{0}\Logs", mydocpath));
+                    }
+
+                    var filename = string.Format(@"{0}\Logs\LogNavegacao_{1}_{2}.html", mydocpath, dataHoraAtual.ToString("yyyy-MM-dd'_'HH'-'mm'-'ss"), browser.DocumentTitle);
+
+                    using (StreamWriter outputFile = new StreamWriter(filename))
+                    {
+                        outputFile.WriteLine(browser.DocumentTitle);
+                        outputFile.WriteLine(browser.Url);
+                        outputFile.WriteLine(browser.DocumentText);
+                    }
+                }
+
                 Close();
             }
         }

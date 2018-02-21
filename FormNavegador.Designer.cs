@@ -37,6 +37,7 @@
             this.btnNovaGuia = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timerFechar = new System.Windows.Forms.Timer(this.components);
+            this.ckeFecharNavegador = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnRetorna
@@ -101,22 +102,35 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 33);
+            this.tabControl1.Location = new System.Drawing.Point(3, 50);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1019, 703);
+            this.tabControl1.Size = new System.Drawing.Size(1019, 686);
             this.tabControl1.TabIndex = 2;
             // 
             // timerFechar
             // 
-            this.timerFechar.Interval = 20000;
+            this.timerFechar.Interval = 30000;
             this.timerFechar.Tick += new System.EventHandler(this.timerFechar_Tick);
+            // 
+            // ckeFecharNavegador
+            // 
+            this.ckeFecharNavegador.AutoSize = true;
+            this.ckeFecharNavegador.Checked = true;
+            this.ckeFecharNavegador.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckeFecharNavegador.Location = new System.Drawing.Point(4, 33);
+            this.ckeFecharNavegador.Name = "ckeFecharNavegador";
+            this.ckeFecharNavegador.Size = new System.Drawing.Size(256, 17);
+            this.ckeFecharNavegador.TabIndex = 3;
+            this.ckeFecharNavegador.Text = "Fechar o Navegador após concluir a navegação";
+            this.ckeFecharNavegador.UseVisualStyleBackColor = true;
             // 
             // FormNavegador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 737);
+            this.Controls.Add(this.ckeFecharNavegador);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.btnNovaGuia);
@@ -142,6 +156,7 @@
         private System.Windows.Forms.Button btnNovaGuia;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Timer timerFechar;
+        private System.Windows.Forms.CheckBox ckeFecharNavegador;
     }
 }
 
